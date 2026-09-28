@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Internet Technologies & AI | Tommy Stathopoulos</title>
+<style>
+    * { box-sizing: border-box; }
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: 1.6;
+        color: #1f2937;
+        background: #f3f6fb;
+    }
+    header {
+        background: linear-gradient(135deg, #173b75, #2563a6);
+        color: white;
+        padding: 50px 20px;
+        text-align: center;
+    }
+    header h1 { margin: 0 0 10px; font-size: 2.5rem; }
+    header p { margin: 0; font-size: 1.1rem; }
+    nav {
+        background: #102b55;
+        padding: 12px;
+        text-align: center;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+    nav a {
+        color: white;
+        text-decoration: none;
+        margin: 0 12px;
+        font-weight: bold;
+    }
+    nav a:hover { text-decoration: underline; }
+    main { max-width: 1050px; margin: 30px auto; padding: 0 18px; }
+    section {
+        background: white;
+        padding: 28px;
+        margin-bottom: 25px;
+        border-radius: 14px;
+        box-shadow: 0 4px 14px rgba(0,0,0,.08);
+    }
+    h2 { color: #173b75; margin-top: 0; }
+    h3 { color: #2563a6; }
+    .image-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 18px;
+        margin-top: 20px;
+    }
+    .image-grid img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        border-radius: 12px;
+    }
+    .links a {
+        display: inline-block;
+        margin: 7px 8px 7px 0;
+        padding: 9px 13px;
+        background: #e8f1fb;
+        color: #173b75;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    .links a:hover { background: #d4e5f7; }
+    .chatbox {
+        border: 1px solid #d6dce5;
+        border-radius: 12px;
+        overflow: hidden;
+        background: #f8fafc;
+    }
+    #chatMessages {
+        height: 300px;
+        overflow-y: auto;
+        padding: 15px;
+    }
+    .message {
+        margin: 9px 0;
+        padding: 10px 13px;
+        border-radius: 10px;
+        max-width: 85%;
+    }
+    .bot { background: #e5eef9; }
+    .user { background: #dff4df; margin-left: auto; }
+    .chat-input {
+        display: flex;
+        gap: 8px;
+        padding: 12px;
+        border-top: 1px solid #d6dce5;
+        background: white;
+    }
+    input[type="text"], textarea {
+        flex: 1;
+        padding: 11px;
+        border: 1px solid #c8d0da;
+        border-radius: 8px;
+        font-size: 1rem;
+    }
+    button {
+        border: 0;
+        border-radius: 8px;
+        padding: 11px 17px;
+        background: #173b75;
+        color: white;
+        cursor: pointer;
+        font-weight: bold;
+    }
+    button:hover { background: #2563a6; }
+    .person-area {
+        display: grid;
+        grid-template-columns: minmax(250px, 1fr) minmax(280px, 1.2fr);
+        gap: 25px;
+        align-items: start;
+    }
+    .avatar-card {
+        text-align: center;
+        padding: 20px;
+        border-radius: 14px;
+        background: #eef4fb;
+    }
+    #avatarImage {
+        width: 220px;
+        height: 220px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 7px solid white;
+        box-shadow: 0 3px 15px rgba(0,0,0,.18);
+        display: block;
+        margin: 15px auto;
+        background: #dce6f2;
+    }
+    #avatarPlaceholder {
+        width: 220px;
+        height: 220px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 15px auto;
+        background: #dce6f2;
+        color: #526273;
+        font-weight: bold;
+    }
+    .status {
+        padding: 10px;
+        border-radius: 8px;
+        background: #fff;
+        margin-top: 10px;
+        font-size: .95rem;
+    }
+    .step {
+        padding: 12px;
+        margin: 8px 0;
+        border-left: 4px solid #2563a6;
+        background: #f7f9fc;
+    }
+    footer {
+        text-align: center;
+        padding: 25px;
+        color: #657286;
+    }
+    @media (max-width: 750px) {
+        .person-area { grid-template-columns: 1fr; }
+        nav a { display: inline-block; margin: 5px 7px; }
+        header h1 { font-size: 2rem; }
+    }
+</style>
+</head>
+
+<body>
+<header>
+    <h1>Internet Technologies & Artificial Intelligence</h1>
+    <p>CS 125 Digital Citizen Portfolio — Tommy Stathopoulos</p>
+</header>
+
+<nav>
+    <a href="#internet">Internet</a>
+    <a href="#isp">ISPs</a>
+    <a href="#browsers">Browsers</a>
+    <a href="#search">Search Engines</a>
+    <a href="#chatbot">AI Chatbot</a>
+    <a href="#digital-person">AI Digital Person</a>
+</nav>
+
+<main>
+<section id="internet">
+    <h2>How the Internet Works</h2>
+    <p>
+        The Internet is a worldwide network that connects computers, phones, servers,
+        and other devices. When a device connects to the Internet, it can communicate
+        with other devices by sending and receiving data. Information is broken into
+        small pieces called packets. These packets travel through networks and are
+        reassembled when they reach their destination.
+    </p>
+    <p>
+        When I visit a website, my device sends a request through my Internet connection.
+        The request can travel through routers and other network equipment until it
+        reaches the server that hosts the website. The server sends the requested
+        information back to my device, and my browser displays it as a webpage.
+        Protocols such as TCP/IP help devices communicate in an organized way.
+    </p>
+
+    <div class="image-grid">
+        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1000&q=80"
+             alt="Glowing network connections representing the Internet">
+        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1000&q=80"
+             alt="Computer technology and circuit board">
+    </div>
+</section>
+
+<section id="isp">
+    <h2>Internet Service Providers (ISPs)</h2>
+    <p>
+        An Internet Service Provider, or ISP, is a company that provides people and
+        organizations with access to the Internet. An ISP connects a customer's
+        home, school, or business network to a larger network that can reach websites
+        and online services around the world.
+    </p>
+    <p>
+        Examples of Internet service providers include companies that offer cable,
+        fiber, DSL, satellite, or cellular Internet connections. ISPs may also provide
+        services such as email, Wi-Fi equipment, technical support, and different
+        Internet speed plans.
+    </p>
+</section>
+
+<section id="browsers">
+    <h2>Web Browsers</h2>
+    <p>
+        A web browser is software used to access and display websites. When a person
+        enters a web address, the browser requests the webpage from a web server and
+        then interprets the webpage's HTML, CSS, and JavaScript. The browser turns
+        that code into the webpage that the user sees.
+    </p>
+    <p>
+        Popular web browsers include Google Chrome, Apple Safari, Microsoft Edge,
+        Mozilla Firefox, and others. Browsers also provide features such as tabs,
+        bookmarks, private browsing, saved passwords, and security warnings.
+    </p>
+</section>
+
+<section id="search">
+    <h2>Search Engines</h2>
+    <p>
+        A search engine helps people find information on the Internet. Search engines
+        use automated programs to discover and organize webpages. When a person types
+        a search query, the search engine examines its index and returns results that
+        are relevant to the query.
+    </p>
+    <p>
+        Search engines are different from web browsers. A browser is the program used
+        to visit websites, while a search engine is an online service used to find
+        information and webpages. A person can use a search engine inside a browser.
+    </p>
+
+    <h3>Useful Internet Links</h3>
+    <div class="links">
+        <a href="https://www.google.com" target="_blank" rel="noopener">Google</a>
+        <a href="https://www.mozilla.org/firefox/" target="_blank" rel="noopener">Firefox</a>
+        <a href="https://www.cloudflare.com/learning/network-layer/what-is-the-internet/" target="_blank" rel="noopener">Internet Basics</a>
+        <a href="https://www.icann.org/" target="_blank" rel="noopener">ICANN</a>
+    </div>
+</section>
+
+<section id="chatbot">
+    <h2>AI Chatbot</h2>
+    <p>
+        This chatbot demonstrates how a website can receive questions and respond
+        conversationally. Type a question below. The chatbot can explain the main
+        Internet Technology topics covered on this page.
+    </p>
+
+    <div class="chatbox">
+        <div id="chatMessages">
+            <div class="message bot"><strong>AI Assistant:</strong> Hi! Ask me about the Internet, ISPs, web browsers, search engines, or AI.</div>
+        </div>
+        <div class="chat-input">
+            <input id="chatInput" type="text" placeholder="Type your question..." onkeydown="if(event.key==='Enter') sendMessage()">
+            <button onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+</section>
+
+<section id="digital-person">
+    <h2>Interactive AI Digital Person</h2>
+    <p>
+        This section demonstrates the requested process of uploading a photo,
+        displaying a digital-person avatar, asking questions, and receiving spoken
+        answers. The uploaded photo becomes the visual avatar for this browser-based
+        demonstration.
+    </p>
+
+    <div class="step"><strong>Step 1:</strong> Upload a photo.</div>
+    <input type="file" id="photoUpload" accept="image/*">
+
+    <div class="person-area">
+        <div class="avatar-card">
+            <h3>My Digital Person</h3>
+            <div id="avatarPlaceholder">Upload a photo</div>
+            <img id="avatarImage" alt="Uploaded digital person" style="display:none;">
+            <div class="status" id="avatarStatus">
+                Waiting for a photo.
+            </div>
+        </div>
+
+        <div>
+            <h3>Talk to the Digital Person</h3>
+            <p>Ask a question and the digital person will answer on the page and read the answer aloud.</p>
+            <div class="chat-input" style="padding:0; background:transparent; border:0;">
+                <input id="personInput" type="text" placeholder="Ask the digital person a question..."
+                       onkeydown="if(event.key==='Enter') askPerson()">
+                <button onclick="askPerson()">Ask</button>
+            </div>
+            <div class="status" id="personResponse">
+                Your digital person is ready to answer.
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2>Project Process</h2>
+    <div class="step"><strong>1. Upload Photo:</strong> A visitor selects an image from their device.</div>
+    <div class="step"><strong>2. Generate Digital Person:</strong> The selected image is displayed as the visitor's digital-person avatar.</div>
+    <div class="step"><strong>3. Talk to Digital Person:</strong> The visitor types a question.</div>
+    <div class="step"><strong>4. Ask Questions:</strong> The digital person processes the question using the built-in response system.</div>
+    <div class="step"><strong>5. Receive Answers:</strong> The answer appears on the page and is spoken using the browser's speech feature.</div>
+</section>
+</main>
+
+<footer>
+    <p>CS 125 Digital Citizen Portfolio — Internet Technologies & AI</p>
+</footer>
+
+<script>
+const chatMessages = document.getElementById("chatMessages");
+
+function addMessage(text, type) {
+    const div = document.createElement("div");
+    div.className = "message " + type;
+    div.innerHTML = "<strong>" + (type === "user" ? "You" : "AI Assistant") + ":</strong> " + text;
+    chatMessages.appendChild(div);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function getAnswer(question) {
+    const q = question.toLowerCase();
+
+    if (q.includes("internet") || q.includes("work")) {
+        return "The Internet is a worldwide network of connected devices. Data is divided into packets, sent through networks and routers, and delivered to the destination device.";
+    }
+    if (q.includes("isp") || q.includes("service provider")) {
+        return "An ISP, or Internet Service Provider, connects people and organizations to the Internet. ISPs can provide cable, fiber, DSL, satellite, or cellular connections.";
+    }
+    if (q.includes("browser") || q.includes("chrome") || q.includes("safari") || q.includes("firefox")) {
+        return "A web browser is software that requests webpages from servers and displays their HTML, CSS, and JavaScript. Chrome, Safari, Firefox, and Edge are examples.";
+    }
+    if (q.includes("search engine") || q.includes("google") || q.includes("bing")) {
+        return "A search engine is an online service that indexes webpages and helps users find information. Google and Bing are examples.";
+    }
+    if (q.includes("ai") || q.includes("artificial intelligence")) {
+        return "Artificial intelligence refers to computer systems designed to perform tasks that normally require human-like intelligence, such as understanding language, recognizing patterns, and generating content.";
+    }
+    if (q.includes("packet")) {
+        return "A packet is a small piece of data sent across a network. Large amounts of information can be divided into packets and reassembled at the destination.";
+    }
+    if (q.includes("hello") || q.includes("hi")) {
+        return "Hello! I'm the AI assistant on Tommy's Internet Technologies page. What would you like to learn?";
+    }
+    return "I can help explain how the Internet works, ISPs, web browsers, search engines, packets, and artificial intelligence. Try asking me about one of those topics.";
+}
+
+function sendMessage() {
+    const input = document.getElementById("chatInput");
+    const question = input.value.trim();
+    if (!question) return;
+    addMessage(question, "user");
+    input.value = "";
+    setTimeout(() => addMessage(getAnswer(question), "bot"), 350);
+}
+
+const upload = document.getElementById("photoUpload");
+upload.addEventListener("change", function() {
+    const file = this.files[0];
+    if (!file) return;
+
+    if (!file.type.startsWith("image/")) {
+        document.getElementById("avatarStatus").textContent = "Please choose an image file.";
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        const img = document.getElementById("avatarImage");
+        img.src = e.target.result;
+        img.style.display = "block";
+        document.getElementById("avatarPlaceholder").style.display = "none";
+        document.getElementById("avatarStatus").innerHTML =
+            "<strong>Digital person created.</strong><br>Your uploaded photo is now being used as the interactive avatar.";
+    };
+    reader.readAsDataURL(file);
+});
+
+function personAnswer(question) {
+    const q = question.toLowerCase();
+
+    if (q.includes("who are you")) {
+        return "I am the interactive digital person on this Internet Technologies project.";
+    }
+    if (q.includes("internet")) {
+        return "The Internet connects computers and devices around the world so they can exchange information.";
+    }
+    if (q.includes("isp")) {
+        return "An ISP provides a connection between your device or local network and the wider Internet.";
+    }
+    if (q.includes("browser")) {
+        return "A browser is software that lets you access and view websites, such as Chrome, Safari, Firefox, or Edge.";
+    }
+    if (q.includes("search")) {
+        return "A search engine helps you locate information and webpages by searching an organized index of online content.";
+    }
+    if (q.includes("ai")) {
+        return "AI stands for artificial intelligence. It allows computer systems to perform tasks involving language, patterns, decisions, and content generation.";
+    }
+    if (q.includes("hello") || q.includes("hi")) {
+        return "Hello! It is nice to meet you. Ask me anything about this project.";
+    }
+    return "That is a good question. For this project, I can answer questions about Internet technologies, browsers, ISPs, search engines, and artificial intelligence.";
+}
+
+function speak(text) {
+    if ("speechSynthesis" in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.rate = 0.95;
+        window.speechSynthesis.speak(utterance);
+    }
+}
+
+function askPerson() {
+    const input = document.getElementById("personInput");
+    const question = input.value.trim();
+    if (!question) return;
+
+    const response = personAnswer(question);
+    const box = document.getElementById("personResponse");
+    box.innerHTML = "<strong>Digital Person:</strong> " + response;
+    speak(response);
+    input.value = "";
+}
+</script>
+</body>
+</html>
